@@ -4,7 +4,6 @@
 // -------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Hl7.Fhir.Model;
@@ -44,7 +43,8 @@ namespace Microsoft.Health.Fhir.Core.UnitTests.Features.Operations.Everything
         public async Task GivenAnEverythingOperationRequest_WhenHandled_ThenABundleShouldBeReturned()
         {
             var request = new EverythingOperationRequest("Patient", "123");
-            var searchResult = new SearchResult(new List<SearchResultEntry>(), null, null, new Tuple<string, string>[0]);
+
+            var searchResult = new SearchResult(Enumerable.Empty<SearchResultEntry>(), null, null, new Tuple<string, string>[0]);
 
             _patientEverythingService.SearchAsync(
                 request.ResourceId,

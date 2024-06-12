@@ -172,11 +172,10 @@ namespace Microsoft.Health.Fhir.Web
                 .AsImplementedInterfaces();
             services.Configure<TaskHostingConfiguration>(options => Configuration.GetSection("TaskHosting").Bind(options));
 
-            var jobs = services.TypesInSameAssembly(KnownAssemblies.Core)
+            IEnumerable<TypeRegistrationBuilder> jobs = services.TypesInSameAssembly(KnownAssemblies.Core)
                 .AssignableTo<IJob>()
                 .Transient()
-                .AsSelf()
-                .ToList();
+                .AsSelf();
 
             foreach (TypeRegistrationBuilder job in jobs)
             {
