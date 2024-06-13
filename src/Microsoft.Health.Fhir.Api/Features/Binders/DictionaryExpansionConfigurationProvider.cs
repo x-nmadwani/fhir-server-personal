@@ -48,7 +48,7 @@ public class DictionaryExpansionConfigurationProvider : ConfigurationProvider
 
         var data = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        EnumerateKeys(keys, data);
+        EnumerateKeys((IReadOnlyCollection<string>)keys, data);
 
         Data = data;
     }

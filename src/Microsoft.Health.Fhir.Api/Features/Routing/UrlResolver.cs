@@ -193,7 +193,7 @@ namespace Microsoft.Health.Fhir.Api.Features.Routing
                     else
                     {
                         // 3. The exclude unsupported parameters
-                        IEnumerable<string> removedValues = searchParamsToRemove[searchParam.Key];
+                        var removedValues = searchParamsToRemove[searchParam.Key].ToList();
                         StringValues usedValues = removedValues.Any()
                             ? new StringValues(
                                 searchParam.Value.Select(x => x.SplitByOrSeparator().Except(removedValues).JoinByOrSeparator())
